@@ -7,18 +7,18 @@ import Navbar from './navbar';
 
 const Header = () => {
   return (
-    <header className="py-6 xl:py-10 text-white ">
+    <header className="py-6 xl:py-10 text-primary bg-transparent ">
       <div className="container mx-auto flex justify-between items-center">
         {/*Logo */}
         <Link href="/">
          { /*<Image src="/assets/dbzapi.webp" width="50" height="50" alt="Logo" />*/}
-         <h3 className='text-4xl'>DBZAPI <span className='text-accent'>.</span></h3>
+         <h3 className='text-4xl bg-primary hover:bg-primary/90 border rounded-md text-white/80'>DBZ<span className='text-accent '>.</span>API</h3>
         </Link>
         {/* desktop nav */}
         <div className="hidden xl:flex items-center gap-8">
           <Navbar />
-          <Link href="/">
-            <Button>Home</Button>
+          <Link href="/transformations">
+            <Button>Transformations</Button>
           </Link>
         </div>
 
