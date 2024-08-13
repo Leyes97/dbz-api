@@ -4,6 +4,7 @@ import * as SheetPrimitive from '@radix-ui/react-dialog';
 import { cva } from 'class-variance-authority';
 
 import { IoMdClose } from 'react-icons/io';
+import Image from 'next/image';
 
 import { cn } from '@/lib/utils';
 
@@ -56,7 +57,13 @@ const SheetContent = React.forwardRef(
         {...props}>
         {children}
         <SheetPrimitive.Close className=" absolute right-8 top-7 transition-opacity outline-none">
-          <IoMdClose className="text-3xl text-primary  bg-second border rounded-xl border-primary hover:bg-primary/5" />
+          <Image
+            src="/assets/esfera1estrella.png"
+            width={40}
+            height={40}
+            alt="close"
+            className="transition-transform duration-200 ease-in-out hover:scale-150"
+          />
           <span className="sr-only">Close</span>
         </SheetPrimitive.Close>
       </SheetPrimitive.Content>
