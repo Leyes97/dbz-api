@@ -5,6 +5,7 @@ import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { CiMenuKebab } from 'react-icons/ci';
+import Image from 'next/image';
 
 const links = [
   {
@@ -37,7 +38,13 @@ const MobileNav = () => {
     <nav>
       <Sheet open={isOpen} onOpenChange={setIsOpen}>
         <SheetTrigger className="flex justify-center items-center">
-          <CiMenuKebab className="text-4xl text-primary bg-second border rounded-xl border-primary hover:bg-primary/5" />
+          <Image
+            src="/assets/esfera4estrellas.png"
+            width={40}
+            height={40}
+            alt="close"
+            className="transition-transform duration-200 ease-in-out hover:scale-150"
+          />
         </SheetTrigger>
         <SheetContent className="flex flex-col">
           {/*logo */}
