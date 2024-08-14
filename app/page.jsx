@@ -1,10 +1,27 @@
 'use client';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 //axios routes;
 import { Controllers } from '@/app/controllers/index';
+//components
+import ButtonCustom from '@/components/ButtonCustom';
+
+const links = [
+  {
+    name: 'Characters',
+    path: '/characters',
+  },
+  {
+    name: 'Planets',
+    path: '/planets',
+  },
+  {
+    name: 'Transformations',
+    path: '/Transformation',
+  },
+];
 
 export default function Home() {
   const [data, setData] = useState([]);
@@ -13,12 +30,14 @@ export default function Home() {
   const handleclick = () => {
     setIsOpen(!isOpen);
   };
+
   useEffect(() => {
     (async () => {
       const characters = await Controllers.allCharacter();
       setData(characters);
     })();
   }, []);
+
   console.log(data?.items);
 
   return (
@@ -37,13 +56,27 @@ export default function Home() {
             />
             {!isOpen && (
               <>
-                <h1 className="h1 p-10 xl:p-4">¿Ya pediste tu deseo?</h1>
-                <span className="text-2xl">¡¡¡Sal de ahi Shenlong!!! </span>
+                <h1 className="h1 p-10 xl:p-4 uppercase">
+                  ¿Ya pediste tu deseo?
+                </h1>
+                <span className="text-2xl uppercase">
+                  ¡¡¡Sal de ahi Shenlong!!!{' '}
+                </span>
               </>
             )}
           </div>
           {/*button*/}
-          <div>button</div>
+          {isOpen && (
+            <div className="flex flex-col xl:flex-row items-center xl:justify-between">
+              {links.map((link, index) => {
+                return (
+                  <Link key={index} href={link.path} className="p-6">
+                    <ButtonCustom text={link.name} />
+                  </Link>
+                );
+              })}
+            </div>
+          )}
         </div>
       </div>
     </section>
