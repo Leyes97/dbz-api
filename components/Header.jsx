@@ -4,7 +4,7 @@ import { Button } from './ui/button';
 
 // components
 import MobileNav from './MobileNav';
-import Navbar from './navbar';
+import Navbar from './Navbar';
 
 const Header = () => {
   return (
