@@ -8,7 +8,7 @@ import Navbar from './navbar';
 
 const Header = () => {
   return (
-    <header className="py-6 xl:py-10 text-primary bg-transparent ">
+    <header className="py-2 xl:py-2 text-primary bg-transparent  border-primary/10 border-b-2">
       <div className="container mx-auto flex justify-between items-center">
         {/*Logo */}
         <Link href="/">

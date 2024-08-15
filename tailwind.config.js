@@ -25,11 +25,17 @@ module.exports = {
     extend: {
       colors: {
         primary: '#1c1c22',
-        second:'#fee5bc',
+        second: '#fee5bc',
         accent: {
           DEFAULT: '#f3ae3c',
           hover: '#f99c04',
         },
+        card:"rgb(60,62,68)"
+      },
+
+      boxShadow: {
+        custom:
+          'rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px',
       },
       keyframes: {
         'accordion-down': {

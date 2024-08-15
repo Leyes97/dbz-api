@@ -5,7 +5,7 @@ export const Controllers = {
   allCharacter: async () => {
     try {
       const response = await axios.get(
-        'https://dragonball-api.com/api/characters',
+        'https://dragonball-api.com/api/characters?limit=58',
       );
       const characters = response.data;
       return characters;
