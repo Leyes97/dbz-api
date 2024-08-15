@@ -2,49 +2,53 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 
-//routes
+// routes
 import { Controllers } from '../controllers';
 
 const Transformations = () => {
-  const [characters, setCharacters] = useState({});
   const [transformations, setTransformations] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    (async () => {
-      const data = await Controllers.allCharacter();
-      setCharacters(data);
-    })();
+    const fetchTransformations = async () => {
+      try {
+        const charactersData = await Controllers.allCharacter();
+        const transformationPromises = charactersData.items.map(
+          async (character) => {
+            const data = await Controllers.character(character.id);
+            return data.transformations.length > 0
+              ? data.transformations
+              : null;
+          },
+        );
+
+        const transformationsArray = await Promise.all(transformationPromises);
+        const flattenedTransformations = transformationsArray
+          .flat()
+          .filter(Boolean);
+        setTransformations(flattenedTransformations);
+      } catch (error) {
+        console.error('Error fetching transformations:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTransformations();
   }, []);
 
-  useEffect(() => {
-    (async () => {
-      let arr = [];
-      let arr2 = [];
-      characters?.items?.forEach((character) => {
-        arr.push(character.id);
-      });
-
-      for (const id of arr) {
-        const data = await Controllers.character(id);
-        if (data.transformations.length !== 0) {
-          arr2 = arr2.concat(data.transformations);
-        }
-      }
-
-      setTransformations(arr2);
-    })();
-  }, [characters]);
-
-  console.log(transformations);
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="h-full">
       <div className="container mx-auto h-full">
         <div className="grid grid-cols-1 gap-8 xl:grid-cols-4 xl:gap-16 items-center justify-between pt-10 xl:pt-8 xl:pb-24">
-          {transformations?.map((character, index) => (
+          {transformations.map((character, index) => (
             <div key={index}>
               <article className="bg-white/60 border rounded-md overflow-hidden cursor-pointer">
-                <div className="flex justify-center items-center h-96 transition-transform duration-200 ease-in-out hover:scale-105 ">
+                <div className="flex justify-center items-center h-96 transition-transform duration-200 ease-in-out hover:scale-105">
                   <Image
                     className="w-auto h-full object-contain"
                     src={character.image}
