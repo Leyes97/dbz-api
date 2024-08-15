@@ -46,7 +46,7 @@ export const Controllers = {
   allPlanets: async () => {
     try {
       const response = await axios.get(
-        'https://dragonball-api.com/api/planets',
+        'https://dragonball-api.com/api/planets?limit=20',
       );
       const planets = response.data;
       return planets;

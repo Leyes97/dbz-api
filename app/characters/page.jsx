@@ -14,7 +14,6 @@ const Characters = () => {
       setCharacters(data);
     })();
   }, []);
-  console.log(characters);
 
   return (
     <div className="h-full">
