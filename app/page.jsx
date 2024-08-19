@@ -19,7 +19,7 @@ const links = [
   },
   {
     name: 'Transformations',
-    path: '/Transformation',
+    path: '/transformations',
   },
 ];
 
@@ -45,13 +45,13 @@ export default function Home() {
       <div className="container mx-auto h-full">
         <div className="flex flex-col items-center justify-center xl:pt-8 xl:pb-24">
           {/*image*/}
-          <div className="flex flex-col items-center text-center ">
+          <div className="flex flex-col items-center text-center">
             <Image
               src={`/assets/${isOpen ? 'dragon.png' : '7esferas.png'}`}
               alt="esferas"
               width={400}
               height={400}
-              className="p-10 xl:p-4 transition-transform duration-200 ease-in-out hover:scale-110"
+              className="p-10 xl:p-4 transition-transform duration-200 ease-in-out hover:scale-110 cursor-pointer"
               onClick={handleclick}
             />
             {!isOpen && (
